@@ -32,7 +32,6 @@ async function getLatestRelease() {
     const { data } = await octokit.rest.repos.getLatestRelease({
       owner: 'FriendsOfShopware',
       repo: 'shopware-cli',
-
     });
 
     return data;

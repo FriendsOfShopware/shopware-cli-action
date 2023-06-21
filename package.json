@@ -2,11 +2,12 @@
   "name": "shopware-cli-action",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.ts",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build --source-map --minify --license licenses.txt"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/semver": "^7.5.0",
     "@types/yargs": "^17.0.24",
-    "@typescript-eslint/eslint-plugin": "^5.59.11"
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@vercel/ncc": "^0.36.1"
   }
 }

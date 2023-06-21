@@ -1,0 +1,16 @@
+name: 'Shopware CLI Action'
+description: 'GitHub Action for Shopware CLI, a command line tool helper for Shopware'
+author: 'FriendsOfShopware'
+branding:
+  color: 'green'
+  icon: 'package'
+
+inputs:
+  version:
+    description: 'Shopware CLI version'
+    default: 'latest'
+    required: false
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
