@@ -1,6 +1,5 @@
-import { existsSync, readFileSync, renameSync } from 'fs';
+import { renameSync } from 'fs';
 import { join } from 'path';
-import yaml from 'js-yaml';
 import { info, debug } from '@actions/core';
 import {
   extractZip, extractTar, downloadTool, cacheDir,
@@ -97,41 +96,3 @@ export async function install(version: string) {
   return exePath;
 }
 
-export async function getDistPath(yamlFile: string): Promise<string> {
-  const cfg = yaml.load(readFileSync(yamlFile, 'utf8')) as { dist?: string };
-  return cfg.dist || 'dist';
-}
-
-export async function getArtifacts(
-  distPath: string,
-): Promise<string | undefined> {
-  const artifactsFile = join(distPath, 'artifacts.json');
-
-  if (!existsSync(artifactsFile)) {
-    return undefined;
-  }
-
-  const content = readFileSync(artifactsFile, { encoding: 'utf-8' }).trim();
-  if (content === 'null') {
-    return undefined;
-  }
-
-  return content;
-}
-
-export async function getMetadata(
-  distPath: string,
-): Promise<string | undefined> {
-  const metadataFile = join(distPath, 'metadata.json');
-
-  if (!existsSync(metadataFile)) {
-    return undefined;
-  }
-
-  const content = readFileSync(metadataFile, { encoding: 'utf-8' }).trim();
-  if (content === 'null') {
-    return undefined;
-  }
-
-  return content;
-}
