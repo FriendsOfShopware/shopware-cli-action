@@ -20,7 +20,7 @@
     "@octokit/action": "^6.0.3",
     "@octokit/request-error": "^4.0.2",
     "@types/node": "^20.3.1",
-    "@typescript-eslint/parser": "^5.59.11",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
