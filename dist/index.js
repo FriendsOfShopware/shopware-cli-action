@@ -33346,6 +33346,8 @@ exports.getRelease = getRelease;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.install = void 0;
 const fs_1 = __nccwpck_require__(7147);
+const path_1 = __nccwpck_require__(1017);
+const core_1 = __nccwpck_require__(2186);
 const tool_cache_1 = __nccwpck_require__(7784);
 const context_1 = __nccwpck_require__(8954);
 const github_1 = __nccwpck_require__(978);
@@ -33398,32 +33400,25 @@ async function extractArchive(path) {
 }
 async function install(version) {
     const release = await (0, github_1.getRelease)(version);
-    // if (release.prerelease) {
-    //   debug(`Release ${version} is a pre-release`);
-    // }
-    // const filename = getFilename();
-    // const downloadUrl = release.assets.find((asset) => asset.name === filename)?.browser_download_url;
-    // if (!downloadUrl) {
-    //   throw new Error(`No asset found with the filename: ${filename}`);
-    // }
-    // info(`Downloading ${downloadUrl}`);
-    // const downloadPath = await downloadTool(downloadUrl);
-    // debug(`Downloaded to ${downloadPath}`);
-    // info('Extracting shopware-cli');
-    // const extPath = await extractArchive(downloadPath);
-    // debug(`Extracted to ${extPath}`);
-    // const cachePath = await cacheDir(
-    //   extPath,
-    //   'shopware-cli-action',
-    //   release.tag_name.replace(/^v/, ''),
-    // );
-    // debug(`Cached to ${cachePath}`);
-    // const exePath = join(
-    //   cachePath,
-    //   `shopware-cli${osPlat === 'win32' ? '.exe' : ''}`,
-    // );
-    // debug(`Exe path is ${exePath}`);
-    return '';
+    if (release.prerelease) {
+        (0, core_1.debug)(`Release ${version} is a pre-release`);
+    }
+    const filename = getFilename();
+    const downloadUrl = release.assets.find((asset) => asset.name === filename)?.browser_download_url;
+    if (!downloadUrl) {
+        throw new Error(`No asset found with the filename: ${filename}`);
+    }
+    (0, core_1.info)(`Downloading ${downloadUrl}`);
+    const downloadPath = await (0, tool_cache_1.downloadTool)(downloadUrl);
+    (0, core_1.debug)(`Downloaded to ${downloadPath}`);
+    (0, core_1.info)('Extracting shopware-cli');
+    const extPath = await extractArchive(downloadPath);
+    (0, core_1.debug)(`Extracted to ${extPath}`);
+    const cachePath = await (0, tool_cache_1.cacheDir)(extPath, 'shopware-cli-action', release.tag_name.replace(/^v/, ''));
+    (0, core_1.debug)(`Cached to ${cachePath}`);
+    const exePath = (0, path_1.join)(cachePath, `shopware-cli${context_1.osPlat === 'win32' ? '.exe' : ''}`);
+    (0, core_1.debug)(`Exe path is ${exePath}`);
+    return exePath;
 }
 exports.install = install;
 
@@ -33683,21 +33678,23 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+const path_1 = __nccwpck_require__(1017);
+const core_1 = __nccwpck_require__(2186);
 const context_1 = __nccwpck_require__(8954);
 const releaser_1 = __nccwpck_require__(1254);
 async function run() {
     try {
         const bin = await (0, releaser_1.install)(context_1.inputs.version);
-        // info(`shopware-cli ${inputs.version} installed successfully`);
-        // const releaser = dirname(bin);
-        // addPath(releaser);
-        // debug(`Added ${releaser} to PATH`);
+        (0, core_1.info)(`shopware-cli ${context_1.inputs.version} installed successfully`);
+        const releaser = (0, path_1.dirname)(bin);
+        (0, core_1.addPath)(releaser);
+        (0, core_1.debug)(`Added ${releaser} to PATH`);
     }
     catch (error) {
-        // if (error instanceof Error) {
-        //   setFailed(error.message);
-        // }
-        // setFailed('Error is not an instance of Error');
+        if (error instanceof Error) {
+            (0, core_1.setFailed)(error.message);
+        }
+        (0, core_1.setFailed)('Error is not an instance of Error');
     }
 }
 run();
