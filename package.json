@@ -17,7 +17,7 @@
     "@actions/exec": "^1.1.1",
     "@actions/http-client": "^2.1.1",
     "@actions/tool-cache": "^2.0.1",
-    "@octokit/action": "^6.0.5",
+    "@octokit/action": "^6.0.6",
     "@octokit/request-error": "^5.0.1",
     "@types/node": "^20.6.3",
     "@typescript-eslint/parser": "^6.7.2",
