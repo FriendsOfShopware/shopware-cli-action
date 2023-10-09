@@ -31,7 +31,7 @@
   "devDependencies": {
     "@types/semver": "^7.5.3",
     "@types/yargs": "^17.0.28",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@vercel/ncc": "^0.38.0"
   }
 }
