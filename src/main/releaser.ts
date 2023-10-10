@@ -1,12 +1,15 @@
 import { renameSync } from 'fs';
 import { join } from 'path';
-import { info, debug } from '@actions/core';
+import { info, debug, exportVariable } from '@actions/core';
 import {
   extractZip, extractTar, downloadTool, cacheDir,
 } from '@actions/tool-cache';
 import { osArch, osPlat } from './context';
 
 import { getRelease } from './github';
+import globalCacheDir from 'global-cache-dir'
+import { restoreCache, isFeatureAvailable } from '@actions/cache';
+import { getCacheKeys } from '../shared/cache';
 
 function getFilename() {
   let arch: string;
@@ -65,6 +68,22 @@ export async function install(version: string) {
     debug(`Release ${version} is a pre-release`);
   }
 
+  exportVariable("SHOPWARE_CLI_VERSION", release.tag_name)
+  process.env.SHOPWARE_CLI_VERSION = release.tag_name;
+
+  const shopwareCliCacheDir = await globalCacheDir('shopware-cli');
+
+  if (isFeatureAvailable()) {
+    const cacheKeys = getCacheKeys();
+
+    await restoreCache([
+      shopwareCliCacheDir
+    ],
+    cacheKeys.shift() as string,
+    cacheKeys
+    )
+  }
+
   const filename = getFilename();
   const downloadUrl = release.assets.find((asset) => asset.name === filename)?.browser_download_url;
 
@@ -93,6 +112,6 @@ export async function install(version: string) {
   );
   debug(`Exe path is ${exePath}`);
 
-  return exePath;
+  return { bin: exePath, version: release.tag_name };
 }
 

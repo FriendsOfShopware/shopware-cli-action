@@ -24,3 +24,12 @@ jobs:
 
       - name: Test binary
         run: shopware-cli --version
+
+      - name: Clone FroshTools
+        run: git clone https://github.com/FriendsOfShopware/FroshTools.git
+
+      - name: Zip FroshTools
+        run: shopware-cli extension zip FroshTools
+
+      - name: Validate
+        run: shopware-cli extension validate FroshTools-*.zip
