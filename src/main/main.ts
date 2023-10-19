@@ -9,8 +9,8 @@ import {
 
 async function run() {
   try {
-    const bin = await install(inputs.version);
-    info(`shopware-cli ${inputs.version} installed successfully`);
+    const { bin, version } = await install(inputs.version);
+    info(`shopware-cli ${version} installed successfully`);
 
     const releaser = dirname(bin);
     addPath(releaser);
