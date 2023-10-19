@@ -25,9 +25,6 @@ jobs:
         with:
           fetch-depth: 0
       -
-        name: Set up Go
-        uses: actions/setup-go@v4
-      -
         name: Install Shopware CLI
         uses: FriendsOfShopware/shopware-cli-action@v1
         env:
