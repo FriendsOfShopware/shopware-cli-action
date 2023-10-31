@@ -17,7 +17,7 @@
     "@actions/tool-cache": "^2.0.1",
     "@octokit/action": "^6.0.6",
     "@octokit/request-error": "^5.0.1",
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@typescript-eslint/parser": "^6.9.1",
     "global-cache-dir": "^6.0.0",
     "eslint": "^8.52.0",
