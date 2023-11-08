@@ -17,7 +17,7 @@
     "@actions/tool-cache": "^2.0.1",
     "@octokit/action": "^6.0.6",
     "@octokit/request-error": "^5.0.1",
-    "@types/node": "^20.8.10",
+    "@types/node": "^20.9.0",
     "@typescript-eslint/parser": "^6.10.0",
     "global-cache-dir": "^6.0.0",
     "eslint": "^8.53.0",
@@ -28,8 +28,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/semver": "^7.5.4",
-    "@types/yargs": "^17.0.30",
+    "@types/semver": "^7.5.5",
+    "@types/yargs": "^17.0.31",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@vercel/ncc": "^0.38.1"
   }
