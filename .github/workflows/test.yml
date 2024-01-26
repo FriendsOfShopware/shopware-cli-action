@@ -19,8 +19,6 @@ jobs:
 
       - name: Install Shopware CLI
         uses: ./.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test binary
         run: shopware-cli --version
