@@ -19,18 +19,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      -
-        name: Install Shopware CLI
+
+      - name: Install Shopware CLI
         uses: FriendsOfShopware/shopware-cli-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      -
-        name: Build and Package Extension
+
+      - name: Build and Package Extension
         run: shopware-cli extension zip .
 ```
 
