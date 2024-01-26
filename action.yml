@@ -10,7 +10,7 @@ inputs:
     description: 'Shopware CLI version'
     default: 'latest'
     required: false
-  github-token:
+  token:
     description: "GitHub Token used to authenticate against a repository for Git context"
     default: ${{ github.token }}
     required: false
