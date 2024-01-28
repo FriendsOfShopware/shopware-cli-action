@@ -8,6 +8,7 @@ import {
 } from './releaser';
 
 async function run() {
+  delete process.env.GITHUB_TOKEN;
   try {
     const { bin, version } = await install(inputs.version);
     info(`shopware-cli ${version} installed successfully`);
