@@ -14,7 +14,7 @@
     "@actions/cache": "^3.2.2",
     "@actions/tool-cache": "^2.0.1",
     "@octokit/action": "^6.0.7",
-    "@octokit/request-error": "^5.0.1",
+    "@octokit/request-error": "^6.0.0",
     "@types/node": "^20.10.4",
     "global-cache-dir": "^6.0.0"
   }
